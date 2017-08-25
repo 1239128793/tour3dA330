@@ -41,20 +41,25 @@
 
 
 			//if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) || (user.browser.family === 'Chrome'))
-				
-				var hasWebRTC = navigator.getUserMedia ||
+
+            if((navigator.userAgent.match(/iPhone/i)) ||
+                (navigator.userAgent.match(/iPod/i)) ||
+                (navigator.userAgent.match(/iPad/i))) { var ios = 1; }
+
+            var hasWebRTC =
+                navigator.getUserMedia ||
                 navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia ||
                 navigator.msGetUserMedia;
 
-            if (hasWebRTC) {
-					// create the panorama player with the container
-					pano=new pano2vrPlayer("container");
-					skin=new pano2vrSkin(pano);
-					pano.readConfigUrl("out.xml");
-					// hide the URL bar on the iPhone
-					hideUrlBar();
-				}
+            if (hasWebRTC || (ios == 1)) {
+                // create the panorama player with the container
+                pano=new pano2vrPlayer("container");
+                skin=new pano2vrSkin(pano);
+                pano.readConfigUrl("out.xml");
+                // hide the URL bar on the iPhone
+                hideUrlBar();
+            }
 			
 
 			else{ 
